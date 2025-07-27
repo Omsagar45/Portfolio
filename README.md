@@ -1,46 +1,135 @@
-# Getting Started with Create React App
+# Om Sagar - Personal Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive personal portfolio website built with React, TypeScript, and Tailwind CSS. Features a dark theme with beautiful animations and a professional design.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Fully Responsive Design** - Works perfectly on all devices
+- **Modern Dark Theme** - Professional dark theme with accent colors
+- **Smooth Animations** - Powered by Framer Motion
+- **Interactive Components** - Hover effects and smooth transitions
+- **Contact Form** - Functional contact form (ready for EmailJS integration)
+- **SEO Optimized** - Meta tags and semantic HTML
+- **Performance Optimized** - Fast loading and smooth scrolling
 
-### `npm start`
+## 📋 Sections
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Hero Section** - Introduction with call-to-action buttons
+2. **About** - Personal information and highlights
+3. **Skills** - Technical skills with proficiency indicators
+4. **Experience** - Work experience with timeline layout
+5. **Education** - Academic background with cards
+6. **Projects** - Portfolio projects (placeholder cards)
+7. **Achievements** - Awards and accomplishments
+8. **Contact** - Contact form and information
+9. **Footer** - Social links and additional information
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- **Frontend Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Form Handling**: React Hooks
+- **Deployment**: Ready for Netlify/Vercel
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Installation
 
-### `npm run build`
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd portfolio
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-### `npm run eject`
+## 🔧 Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Personal Information
+Update the data files in `src/data/` to customize the content:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `personalInfo.ts` - Personal details and contact information
+- `education.ts` - Educational background
+- `experience.ts` - Work experience
+- `skills.ts` - Technical skills
+- `achievements.ts` - Awards and accomplishments
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Styling
+The design uses Tailwind CSS with custom color schemes. You can modify:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `tailwind.config.js` - Color palette and custom utilities
+- `src/index.css` - Global styles and component classes
 
-## Learn More
+### Contact Form
+To enable email functionality, integrate with:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **EmailJS**: For client-side email sending
+- **FormSubmit**: For form handling without backend
+- **Netlify Forms**: If deploying to Netlify
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎨 Customization
+
+### Colors
+The portfolio uses a custom color palette:
+- Primary: Blue shades
+- Secondary: Purple shades  
+- Accent: Teal shades
+- Dark: Gray/black shades
+
+### Animations
+All animations are powered by Framer Motion and can be customized in each component.
+
+### Content
+All content is stored in TypeScript files for easy editing and type safety.
+
+## 📱 Responsive Design
+
+The website is fully responsive with breakpoints:
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🚀 Deployment
+
+### Netlify
+1. Build the project: `npm run build`
+2. Deploy the `build` folder to Netlify
+
+### Vercel
+1. Connect your GitHub repository
+2. Vercel will automatically deploy on push
+
+### GitHub Pages
+1. Add `homepage` field to `package.json`
+2. Install `gh-pages`: `npm install --save-dev gh-pages`
+3. Add deploy scripts to `package.json`
+4. Run `npm run deploy`
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Contact
+
+- **Email**: omrsagar123@gmail.com
+- **Phone**: +91-7385973714
+- **Location**: Pune, India
+
+---
+
+Made with ❤️ by Om Sagar using React & Tailwind CSS
