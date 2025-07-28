@@ -11,7 +11,7 @@ export const education: Education[] = [
     degree: "B.Tech in Computer Science",
     institution: "Pimpri Chinchwad College of Engineering, Pune",
     duration: "2022 – 2026",
-    score: "7.2 CGPA",
+    score: "8.2 CGPA",
     description: "Currently pursuing Computer Science with focus on software development and algorithms."
   },
   {

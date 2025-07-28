@@ -83,56 +83,6 @@ const Skills: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Skill Level Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-semibold text-gray-100 mb-2">
-              Skill Proficiency
-            </h3>
-            <p className="text-gray-400">
-              My comfort level with different technologies
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              { skill: 'Frontend Development', level: 85, color: 'primary' },
-              { skill: 'Backend Development', level: 75, color: 'secondary' },
-              { skill: 'Problem Solving', level: 90, color: 'accent' },
-              { skill: 'Database Management', level: 70, color: 'primary' }
-            ].map((item, index) => (
-              <motion.div
-                key={item.skill}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="space-y-2"
-              >
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-300 font-medium">{item.skill}</span>
-                  <span className="text-gray-400 text-sm">{item.level}%</span>
-                </div>
-                <div className="w-full bg-dark-700 rounded-full h-2">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${item.level}%` }}
-                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                    viewport={{ once: true }}
-                    className={`h-2 rounded-full bg-gradient-to-r from-${item.color}-500 to-${item.color}-600`}
-                  ></motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

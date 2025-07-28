@@ -114,7 +114,7 @@ const Education: React.FC = () => {
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center p-4 bg-dark-700 rounded-lg">
-                <div className="text-3xl font-bold text-primary-400 mb-2">7.2</div>
+                <div className="text-3xl font-bold text-primary-400 mb-2">8.2</div>
                 <div className="text-gray-400 text-sm">Current CGPA</div>
               </div>
               <div className="text-center p-4 bg-dark-700 rounded-lg">
