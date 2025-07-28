@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-20">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900"></div>
       
@@ -29,19 +29,19 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left px-4 sm:px-0"
           >
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
               Hi, I'm{' '}
               <span className="gradient-text">{personalInfo.name}</span>
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-300 mb-6"
+              className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6"
             >
               {personalInfo.title}
             </motion.h2>
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
             >
               {personalInfo.intro}
             </motion.p>
@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
           >
             <div className="relative">
               {/* Profile Photo */}
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full border-4 border-primary-500/30 overflow-hidden shadow-2xl">
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full border-4 border-primary-500/30 overflow-hidden shadow-2xl">
                 <img
                   src={personalInfo.profilePhoto}
                   alt="Om Sagar"

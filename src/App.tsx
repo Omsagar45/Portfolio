@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,23 +10,33 @@ import Projects from './components/Projects';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import MessageViewer from './components/MessageViewer';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-        <Projects />
-        <Achievements />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/messages" element={<MessageViewer />} />
+          <Route path="/" element={
+            <>
+              <Navbar />
+              <main>
+                <Hero />
+                <About />
+                <Skills />
+                <Experience />
+                <Education />
+                <Projects />
+                <Achievements />
+                <Contact />
+              </main>
+              <Footer />
+            </>
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -38,18 +38,18 @@ const Navbar: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         scrolled 
           ? 'bg-dark-900/95 backdrop-blur-custom border-b border-dark-700' 
           : 'bg-transparent'
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 px-4">
+        <div className="flex items-center justify-between h-14 md:h-16 px-4">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold gradient-text"
+            className="text-lg md:text-xl font-bold gradient-text"
           >
             Om Sagar
           </motion.div>
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-300 hover:text-primary-400 transition-colors"
+            className="md:hidden p-1.5 text-gray-300 hover:text-primary-400 transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
