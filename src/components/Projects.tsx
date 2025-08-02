@@ -1,46 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Clock } from 'lucide-react';
+import { ExternalLink, Github, Clock, Settings } from 'lucide-react';
+import { getProjects, Project } from '../data/projects';
+import { isAdmin } from '../utils/auth';
 
 const Projects: React.FC = () => {
-  const placeholderProjects = [
-    {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard.",
-      techStack: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "🛒"
-    },
-    {
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates and team features.",
-      techStack: ["React", "Firebase", "Tailwind CSS", "Framer Motion"],
-      image: "📋"
-    },
-    {
-      title: "Weather Dashboard",
-      description: "A weather application with location-based forecasts and interactive weather maps.",
-      techStack: ["JavaScript", "OpenWeather API", "Chart.js", "CSS3"],
-      image: "🌤️"
-    },
-    {
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React and Tailwind CSS.",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      image: "💼"
-    },
-    {
-      title: "Chat Application",
-      description: "Real-time chat application with user authentication and message history.",
-      techStack: ["React", "Socket.io", "Express.js", "MongoDB"],
-      image: "💬"
-    },
-    {
-      title: "Blog Platform",
-      description: "A content management system for creating and managing blog posts with rich text editor.",
-      techStack: ["Next.js", "Prisma", "PostgreSQL", "NextAuth"],
-      image: "📝"
-    }
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isAdminUser, setIsAdminUser] = useState(false);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const fetchedProjects = await getProjects();
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error('Failed to load projects:', error);
+      }
+    };
+
+    const checkAdminStatus = () => {
+      setIsAdminUser(isAdmin());
+    };
+
+    loadProjects();
+    checkAdminStatus();
+
+    // Set up polling for real-time updates
+    const interval = setInterval(loadProjects, 30000); // Check every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -67,9 +55,23 @@ const Projects: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            My <span className="gradient-text">Projects</span>
-          </h2>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              My <span className="gradient-text">Projects</span>
+            </h2>
+            {isAdminUser && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.location.href = '/admin'}
+                className="p-2 bg-primary-500/20 border border-primary-500/30 rounded-lg text-primary-400 hover:bg-primary-500/30 transition-colors"
+                title="Manage Projects"
+              >
+                <Settings size={20} />
+              </motion.button>
+            )}
+          </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Showcasing my work and the technologies I use to build solutions
           </p>
@@ -82,9 +84,9 @@ const Projects: React.FC = () => {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {placeholderProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.id}
               variants={itemVariants}
               className="card group hover:scale-105 transition-all duration-300"
             >
@@ -117,14 +119,38 @@ const Projects: React.FC = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3">
-                <button className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm py-2">
-                  <Clock size={16} />
-                  Coming Soon
-                </button>
-                <button className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm py-2">
-                  <ExternalLink size={16} />
-                  Preview
-                </button>
+                {project.githubUrl ? (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm py-2"
+                  >
+                    <Github size={16} />
+                    GitHub
+                  </a>
+                ) : (
+                  <button className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm py-2">
+                    <Clock size={16} />
+                    Coming Soon
+                  </button>
+                )}
+                {project.liveUrl ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm py-2"
+                  >
+                    <ExternalLink size={16} />
+                    Live Demo
+                  </a>
+                ) : (
+                  <button className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm py-2">
+                    <ExternalLink size={16} />
+                    Preview
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}

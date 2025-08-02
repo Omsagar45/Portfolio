@@ -11,6 +11,7 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MessageViewer from './components/MessageViewer';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/messages" element={<MessageViewer />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/" element={
             <>
               <Navbar />
