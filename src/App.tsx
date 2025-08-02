@@ -11,8 +11,6 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MessageViewer from './components/MessageViewer';
-import { SpeedInsights } from "@vercel/speed-insights/react";
-
 
 function App() {
   return (
