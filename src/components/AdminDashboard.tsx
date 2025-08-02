@@ -13,13 +13,41 @@ const AdminDashboard: React.FC = () => {
   const [editingProject, setEditingProject] = useState<Project | undefined>();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadProjects = async () => {
+    try {
+      console.log('AdminDashboard: Loading projects...');
+      setLoading(true);
+      const fetchedProjects = await getProjects();
+      console.log('AdminDashboard: Projects loaded:', fetchedProjects);
+      setProjects(fetchedProjects);
+    } catch (error) {
+      console.error('AdminDashboard: Failed to load projects:', error);
+      // Don't set error state, just use empty projects array
+      setProjects([]);
+      console.log('AdminDashboard: Using empty projects array as fallback');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
+    console.log('AdminDashboard: Component mounted');
+    
     const checkAuth = () => {
-      const adminStatus = isAdmin();
-      setIsAuthenticated(adminStatus);
-      if (!adminStatus) {
-        setShowLogin(true);
+      try {
+        console.log('AdminDashboard: Checking auth...');
+        const adminStatus = isAdmin();
+        console.log('AdminDashboard: isAdmin =', adminStatus);
+        setIsAuthenticated(adminStatus);
+        if (!adminStatus) {
+          setShowLogin(true);
+        }
+      } catch (err) {
+        console.error('AdminDashboard: Auth check error:', err);
+        setError('Authentication check failed');
       }
     };
 
@@ -31,22 +59,15 @@ const AdminDashboard: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const loadProjects = async () => {
-    try {
-      const fetchedProjects = await getProjects();
-      setProjects(fetchedProjects);
-    } catch (error) {
-      console.error('Failed to load projects:', error);
-    }
-  };
-
   const handleLoginSuccess = () => {
+    console.log('AdminDashboard: Login successful');
     setIsAuthenticated(true);
     setShowLogin(false);
     loadProjects();
   };
 
   const handleLogout = () => {
+    console.log('AdminDashboard: Logging out');
     logout();
     setIsAuthenticated(false);
     setShowLogin(true);
@@ -84,6 +105,36 @@ const AdminDashboard: React.FC = () => {
     setShowForm(false);
     setEditingProject(undefined);
   };
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-400 mb-4">Error</h1>
+          <p className="text-gray-400 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600"
+          >
+            Reload Page
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading admin dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
