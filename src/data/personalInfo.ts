@@ -1,3 +1,5 @@
+import profilePhoto from '../assets/images/Om_Sagar_prof.jpeg';
+
 export const personalInfo = {
   name: "Om Sagar",
   title: "Aspiring Software Engineer",
@@ -5,7 +7,7 @@ export const personalInfo = {
   email: "omrsagar123@gmail.com",
   phone: "+91-7385973714",
   location: "Pune, India",
-  profilePhoto: "https://drive.google.com/thumbnail?id=1WhETo_f_eyhwZ2hgdk_6tbmmzAyzcIPQ&sz=w1000", // Using thumbnail API for better compatibility
+  profilePhoto: profilePhoto, // Local profile photo
   resume: "https://drive.google.com/file/d/1kqmUZLLqn35AxB0YRNyeCf5taTdZjph5/view?usp=sharing", // Keep export=download for resume
   highlights: [
     "Strong problem-solving skills with 100+ coding questions solved",
